@@ -10,7 +10,6 @@
 
 <body>
 
-    <button onclick="getPDF();">Save</button>
     <h1 class="text-success text-center">QR Code Generator</h1>
 
     <div class="container">
@@ -105,8 +104,7 @@
             pdf.save("qr-code.pdf");
         }
 
-        function generate_qr_code(pdf, formData) {
-            count = 0;
+        function generate_qr_code(pdf, formData, count = 0) {
             for (var i = 0; i < 8; i++) {
                 for (var j = 0; j < 3; j++) {
                     if (count < parseInt(formData.total)) {
@@ -117,18 +115,23 @@
                         pdf.addImage(qr.toDataURL(), 'JPG', ((j * 70) + 5), ((i * 37) + 5));
                         pdf.setFontSize(10)
                         var header_type = (formData.type == "bag" ? "BAG" : "PALLET");
-                        pdf.text(header_type, ((j * 70) + 50), ((i * 37) + 12))
+                        pdf.text(header_type, ((j * 70) + 42), ((i * 37) + 12))
                         pdf.setFontSize(8);
                         var batch = "BATCH: " + formData.batch;
-                        pdf.text(batch, ((j * 70) + 40), ((i * 37) + 18));
+                        pdf.text(batch, ((j * 70) + 35), ((i * 37) + 18));
                         var item = "ITEM :" + formData.item;
-                        pdf.text(item, ((j * 70) + 40), ((i * 37) + 22));
+                        pdf.text(item, ((j * 70) + 35), ((i * 37) + 22));
                         var date = "DATE :" + formData.date;
-                        pdf.text(date, ((j * 70) + 40), ((i * 37) + 26))
+                        pdf.text(date, ((j * 70) + 35), ((i * 37) + 26))
                         count++
                     }
 
                 }
+            }
+            console.log((formData.total - count))
+            if ((formData.total - count) > 0) {
+                pdf.addPage();
+                generate_qr_code(pdf, formData, count)
             }
         }
 
