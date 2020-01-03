@@ -25,10 +25,12 @@
                 clientId: "deb8228e-f974-429f-9716-49579a45a2e7",
                 action: "save",
                 sourceInputElementId: "fileUploadControl",
-                sourceUri: "",
+                sourceUri: "https://sunnys-s.github.io/",
                 fileName: "file.txt",
                 openInNewWindow: true,
-                advanced: {},
+                advanced: {
+                    redirectUri: "https://sunnys-s.github.io/"
+                },
                 success: function(files) {
                     /* success handler */
                     console.log(files);
