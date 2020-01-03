@@ -23,14 +23,14 @@
         function launchSaveToOneDrive() {
             var odOptions = {
                 clientId: "deb8228e-f974-429f-9716-49579a45a2e7",
-                action: "save",
-                sourceInputElementId: "fileUploadControl",
-                sourceUri: "https://sunnys-s.github.io/",
-                fileName: "file.txt",
+                action: "download",
+                // sourceInputElementId: "fileUploadControl",
+                // sourceUri: "https://sunnys-s.github.io/",
                 openInNewWindow: true,
-                advanced: {
-                    redirectUri: "https://sunnys-s.github.io/onedrive_picker_redirect.html"
-                },
+                multiSelect: false,
+                // advanced: {
+                //     redirectUri: "https://sunnys-s.github.io/onedrive_picker_redirect.html"
+                // },
                 success: function(files) {
                     /* success handler */
                     console.log(files);
