@@ -175,14 +175,14 @@
         }
 
         function generate_qr_code(pdf, formData, count = 0) {
-            i = 0;
-            j = 0;
             var qr = new QRious({
                 value: JSON.stringify(formData),
                 size: 256
             });
             pdf.addImage(qr.toDataURL(), 'JPG', 0, 0);
             pdf.setFontType('bold');
+            pdf.setFontSize(12);
+            pdf.text(formData.type.toUpperCase(), 7.2, 1.2)
             pdf.setFontSize(10);
             pdf.text("Item Code", 7, 2)
             var item = formData.item;
